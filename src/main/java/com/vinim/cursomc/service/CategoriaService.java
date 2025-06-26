@@ -15,6 +15,11 @@ public class CategoriaService {
 	
 	@Autowired
 	private CategoriaRepository repo;
+	public Integer it = 0;
+	public String t = "t";
+	
+	
+	
 
 	public Categoria buscar(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
@@ -24,7 +29,7 @@ public class CategoriaService {
 	
 	public List<Categoria> listar() { 
 	
-		return 	repo.findAll();
-	}
+		return repo.findAll();
+		}
 
 }
