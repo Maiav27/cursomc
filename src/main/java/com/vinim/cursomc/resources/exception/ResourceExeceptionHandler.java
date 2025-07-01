@@ -9,7 +9,7 @@ import com.vinim.cursomc.service.exceptions.ObjectNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@ControllerAdvice
+@ControllerAdvice 
 public class ResourceExeceptionHandler {
    
 	@ExceptionHandler(ObjectNotFoundException.class)
