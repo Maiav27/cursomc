@@ -16,9 +16,7 @@ public class CategoriaService {
 	
 	@Autowired
 	private CategoriaRepository repo;
-	public Integer it = 0;
-	public String t = "t";
-	
+
 	
 	
 
