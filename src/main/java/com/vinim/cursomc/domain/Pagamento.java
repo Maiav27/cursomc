@@ -3,6 +3,7 @@ package com.vinim.cursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vinim.cursomc.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -21,7 +22,7 @@ public abstract class Pagamento implements Serializable {
 	@Id
 	private Integer id;
 	private Integer estado;
-	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId
