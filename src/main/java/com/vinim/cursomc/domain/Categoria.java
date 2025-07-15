@@ -29,7 +29,6 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 	
-    @JsonManagedReference //é bom colocar a anotação JsonManaged e em produtos JsonBackReference pois quando lista os produtos , de um produto ta em mais  categorias , fica mostrando outras categorias
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	
