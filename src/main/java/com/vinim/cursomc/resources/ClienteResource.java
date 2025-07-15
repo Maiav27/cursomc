@@ -13,7 +13,7 @@ import com.vinim.cursomc.domain.Cliente;
 import com.vinim.cursomc.service.ClienteService;
 
 @RestController
-@RequestMapping(value="/cliente")
+@RequestMapping(value="/clientes")
 public class ClienteResource {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class ClienteResource {
 	
 	
 	@GetMapping(value="{id}")
-	public  ResponseEntity<?> find(@PathVariable Integer id){
+	public  ResponseEntity<Cliente> find(@PathVariable Integer id){
 			Cliente obj = service.buscar(id);
 			return ResponseEntity.ok().body(obj);
 	}
