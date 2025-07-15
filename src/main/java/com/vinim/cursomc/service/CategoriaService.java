@@ -3,12 +3,13 @@ package com.vinim.cursomc.service;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.vinim.cursomc.domain.Categoria;
 import com.vinim.cursomc.repositories.CategoriaRepository;
+import com.vinim.cursomc.service.exceptions.DataIntegrityException;
 import com.vinim.cursomc.service.exceptions.ObjectNotFoundException;
 
 @Service
@@ -40,5 +41,15 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		this.buscar(obj.getId());
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		this.buscar(id);
+		try {
+			
+			this.repo.deleteById(id);
+		}catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produtos");
+		}
 	}
 }
