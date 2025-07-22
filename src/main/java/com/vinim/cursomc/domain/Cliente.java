@@ -2,15 +2,15 @@ package com.vinim.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vinim.cursomc.domain.enums.TipoCliente;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -18,6 +18,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+
 
 @Entity
 public class Cliente implements Serializable {
@@ -31,15 +32,15 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
     @OneToMany(mappedBy="cliente")
     @JsonIgnore
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	@ElementCollection
-	@CollectionTable(name = "telefone")
-	private Set<String> telefones = new HashSet<>();
+	@CollectionTable(name = "TELEFONE")
+	private Set<String> telefones = new LinkedHashSet<>();
 
 	public Cliente() {
 	}
