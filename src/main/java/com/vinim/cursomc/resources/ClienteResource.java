@@ -1,5 +1,6 @@
 package com.vinim.cursomc.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,16 +10,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.vinim.cursomc.domain.Categoria;
 import com.vinim.cursomc.domain.Cliente;
-import com.vinim.cursomc.dto.CategoriaDTO;
 import com.vinim.cursomc.dto.ClienteDTO;
+import com.vinim.cursomc.dto.ClienteNewDTO;
 import com.vinim.cursomc.service.ClienteService;
 
 import jakarta.validation.Valid;
@@ -67,6 +69,15 @@ public class ClienteResource {
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
+	
+     @PostMapping
+     public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO){
+    	 Cliente obj = this.service.dtoToCliente(objDTO);
+    	 obj = this.service.insert(obj);
+    	 URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+    			 .path("/{id}").buildAndExpand(obj.getId()).toUri();
+    	 return ResponseEntity.created(uri).build();
+     }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
