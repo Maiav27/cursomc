@@ -33,8 +33,7 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
 	public boolean isValid(ClienteDTO objDTO, ConstraintValidatorContext context) {
 		
 		Map<String, String> map = (Map<String, String>)request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-		Integer urId = Integer.parseInt( map.get("id"));
-		
+		Integer urId = Integer.parseInt( map.get("id"));	
 		List<FieldMessage> list = new ArrayList<>();
 		
 		

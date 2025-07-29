@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.vinim.cursomc.domain.Cliente;
 
-import jakarta.transaction.Transactional;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 	
